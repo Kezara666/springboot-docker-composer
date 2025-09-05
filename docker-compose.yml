@@ -12,6 +12,8 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - "3307:3306"   # host:container
+    networks:
+      - my-network
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
@@ -27,6 +29,8 @@ services:
     image: kezara666/springboot-app:latest   
     ports:
       - "8081:8080"   # host:container
+    networks:
+      - my-network
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/demo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: user
